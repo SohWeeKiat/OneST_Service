@@ -1,0 +1,1 @@
+export { isValidUEN } from "./format-validator";

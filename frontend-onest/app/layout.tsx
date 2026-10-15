@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layout/Navbar";
+import { Toaster } from "@/components/ui/toast";
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main className="flex-1 mt-3">
           {children}
         </main>
+        <Toaster/>
       </body>
     </html>
   );

@@ -3,7 +3,8 @@
   "private": true,
   "workspaces": [
     "frontend-onest",
-    "backend-onest"
+    "backend-onest",
+    "packages/*"
   ],
   "scripts": {
     "dev": "concurrently -n frontend,backend \"npm run dev -w frontend-onest\" \"npm run start:dev -w backend-onest\"",
