@@ -1,0 +1,18 @@
+{
+  "name": "OneST",
+  "private": true,
+  "workspaces": [
+    "frontend-onest",
+    "backend-onest"
+  ],
+  "scripts": {
+    "dev": "concurrently -n frontend,backend \"npm run dev -w frontend-onest\" \"npm run start:dev -w backend-onest\"",
+    "build": "npm run build -w frontend-onest && npm run build -w backend-onest",
+    "dev:frontend": "npm run dev -w frontend-onest",
+    "dev:backend": "npm run start:dev -w backend-onest",
+    "test": "npm run test -w backend-onest"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}
