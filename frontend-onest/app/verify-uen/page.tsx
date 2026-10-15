@@ -26,7 +26,7 @@ export default function Page() {
                         toast.add({
                             title: "Bad Request",
                             description: errorData.message[0]
-                            
+
                         });
                     } else {
                         toast.add({
@@ -85,7 +85,7 @@ export default function Page() {
                         <div className="grid gap-2">
                             <Label htmlFor="uen">UEN</Label>
                             <Input id="uen" name="uen" type="text" autoCapitalize="none" autoComplete="off"
-                                autoCorrect="off" disabled={isSubmitting}/>
+                                autoCorrect="off" disabled={isSubmitting} />
                         </div>
                         <Button type="submit" disabled={isSubmitting}>
                             Check
