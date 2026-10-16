@@ -1,0 +1,22 @@
+FROM node:latest
+
+WORKDIR /app
+
+COPY package*.json ./
+COPY backend-onest/package.json ./backend-onest/
+COPY packages/uen_validator/package.json ./packages/uen_validator/
+
+RUN npm ci
+
+COPY backend-onest ./backend-onest
+COPY packages ./packages
+
+RUN npm run build -w @OneST/uen_validator
+RUN npm run build -w backend-onest
+
+ENV NODE_ENV=production
+ENV PORT=3001
+
+EXPOSE 3001
+
+CMD ["npm", "run", "start:prod", "-w", "backend-onest"]

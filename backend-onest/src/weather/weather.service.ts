@@ -1,6 +1,7 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { firstValueFrom } from 'rxjs';
+import { Cron } from '@nestjs/schedule';
 
 export type LocationData = {
     latitude: number;
@@ -40,6 +41,7 @@ export class WeatherService implements OnModuleInit {
 
     constructor(private readonly httpService: HttpService) { }
 
+    @Cron('*/5 * * * *')
     private async LoadData(): Promise<void> {
         try {
             const data = await firstValueFrom(
@@ -75,5 +77,9 @@ export class WeatherService implements OnModuleInit {
 
     getWeatherForecast(area: string): ForecastAreaData | undefined {
         return this.ForecastMap.get(area);
+    }
+
+    getLastUpdateTimestamp(): string | null {
+        return this.ForecastData ? this.ForecastData.update_timestamp : null;
     }
 }

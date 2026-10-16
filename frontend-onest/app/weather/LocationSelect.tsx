@@ -2,6 +2,7 @@
 import { Item, ItemContent, ItemMedia, ItemTitle } from "@/components/ui/item";
 import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select";
 import { Spinner } from "@/components/ui/spinner";
+import { toast } from "@/components/ui/toast";
 import { useEffect, useState } from "react";
 
 export type LocationData = {
@@ -36,7 +37,10 @@ export default function LocationSelect({ onLocationChange }: { onLocationChange:
                     const data = await response.json();
                     setLocations(data);
                 }).catch((error) => {
-                    console.error("Error fetching locations:", error);
+                    toast.add({
+                        title: "Error fetching locations",
+                        description: error.message
+                    });
                 });
         }
         fetchLocations();
