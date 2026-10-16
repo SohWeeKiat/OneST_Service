@@ -18,6 +18,6 @@
 1. Download or git clone the project
 2. Ensure that you have at least [**``nodejs v24``**](https://nodejs.org/en/download) installed
 3. Run **``npm install``** in root directory
-4. Build supporting packages first, by executing **``npm run build:packages``**
-5. Start both backend and frontend projects by executing **``npm run dev``**
+4. Build supporting packages first, by executing **``npm run build:packages``** in root directory
+5. Start both backend and frontend projects by executing **``npm run dev``** in root directory
 6. Visit http://localhost:3000/ on browser
