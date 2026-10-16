@@ -13,9 +13,15 @@ type ForecastAreaData = {
     forecast: string;
 };
 
+type WeatherData = {
+    forecast?: ForecastAreaData;
+    update_timestamp?: string;
+    error?: string;
+};
+
 export default function Page() {
     const [selectedLocation, setSelectedLocation] = useState<AreaData | null>(null);
-    const [forecastData, setForecastData] = useState<ForecastAreaData | null>(null);
+    const [forecastData, setForecastData] = useState<WeatherData | null>(null);
 
     const handleLocationChange = async (location: AreaData) => {
         setSelectedLocation(location);
@@ -50,10 +56,11 @@ export default function Page() {
                 </CardHeader>
                 <CardContent>
                     <LocationSelect onLocationChange={handleLocationChange} />
-                    {forecastData && (
+                    {forecastData && forecastData.forecast &&  (
                         <div className="mt-4">
-                            <h3 className="text-lg font-semibold">Forecast for {forecastData.area}:</h3>
-                            <p>{forecastData.forecast}</p>
+                            <h3 className="text-lg font-semibold">Forecast for {forecastData.forecast!.area}:</h3>
+                            <p>{forecastData.forecast!.forecast}</p>
+                            <p className="text-sm text-muted-foreground">Last updated: {forecastData.update_timestamp}</p>
                         </div>
                     )}
                     {!forecastData && selectedLocation && (
