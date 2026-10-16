@@ -64,6 +64,8 @@ export class WeatherService implements OnModuleInit {
             }
         } catch (error) {
             console.error('Error fetching weather data:', error);
+            console.log('Retrying in 3 seconds...');
+            setTimeout(() => this.LoadData(), 3000);
         }
     }
 
