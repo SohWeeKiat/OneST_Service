@@ -19,6 +19,7 @@ describe('UEN Validator', () => {
         ['T08LL1234', false],
         ['S08LL1234', false],
         ['R08LL1234', false],
+        ['R00LS1234A', false],
     ])('isValidUEN(%s) should return %s', (uen, expected) => {
         expect(isValidUEN(uen)).toBe(expected);
     });
