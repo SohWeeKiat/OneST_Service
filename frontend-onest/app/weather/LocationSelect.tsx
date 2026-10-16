@@ -16,6 +16,7 @@ export type AreaData = {
 };
 
 export default function LocationSelect({ onLocationChange }: { onLocationChange: (location: AreaData) => void }) {
+    const [isLoading, setIsLoading] = useState(true);
     const [locations, setLocations] = useState<AreaData[]>([]);
     const [selectedLocation, setSelectedLocation] = useState<AreaData | null>(null);
 
@@ -36,6 +37,7 @@ export default function LocationSelect({ onLocationChange }: { onLocationChange:
                     }
                     const data = await response.json();
                     setLocations(data);
+                    setIsLoading(false);
                 }).catch((error) => {
                     toast.add({
                         title: "Error fetching locations",
@@ -48,7 +50,7 @@ export default function LocationSelect({ onLocationChange }: { onLocationChange:
 
     return (
         <>
-            {locations.length > 0 ? (
+            {!isLoading ? (
                 <NativeSelect onChange={handleLocationChange} defaultValue={selectedLocation?.name || ""}>
                     <NativeSelectOption value="">Select a location</NativeSelectOption>
                     {locations.map((location) => (
