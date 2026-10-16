@@ -1,0 +1,18 @@
+FROM node:latest
+
+ARG BACKEND_URL=http://backend:3001
+ENV BACKEND_URL=${BACKEND_URL}
+
+WORKDIR /app
+
+COPY package*.json ./
+COPY frontend-onest/package.json ./frontend-onest/
+RUN npm ci
+
+COPY frontend-onest ./frontend-onest
+COPY packages ./packages
+
+RUN npm run build -w frontend-onest
+
+EXPOSE 3001
+CMD ["npm", "run", "start", "-w", "frontend-onest"]

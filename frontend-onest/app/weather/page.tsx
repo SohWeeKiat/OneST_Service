@@ -7,6 +7,7 @@ import { Spinner } from "@/components/ui/spinner"
 import LocationSelect, { AreaData } from "./LocationSelect";
 import { useEffect, useState } from "react";
 import { Item, ItemContent, ItemMedia, ItemTitle } from "@/components/ui/item";
+import { toast } from "@/components/ui/toast";
 
 type ForecastAreaData = {
     area: string;
@@ -39,7 +40,10 @@ export default function Page() {
                     const data = await response.json();
                     setForecastData(data);
                 }).catch((error) => {
-                    console.error("Error fetching forecast data:", error);
+                    toast.add({
+                        title: "Error fetching forecast data",
+                        description: error.message
+                    })
                 });
         }
         fetchForecast();
